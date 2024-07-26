@@ -1,8 +1,11 @@
 package com.co.macla.retotecnico.domain.model.transaction;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Getter
@@ -17,5 +20,5 @@ public class TransactionDto {
     private Integer deviceNumber;
     private String userId;
     private String geoPosition;
-    private BigDecimal amount;
+    private Double amount;
 }
