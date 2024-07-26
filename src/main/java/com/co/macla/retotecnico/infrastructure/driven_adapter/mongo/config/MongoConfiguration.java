@@ -6,6 +6,10 @@ import org.springframework.boot.autoconfigure.mongo.MongoProperties;
 import org.springframework.boot.autoconfigure.mongo.PropertiesMongoConnectionDetails;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.MongoDatabaseFactory;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper;
+import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
 
 @Configuration
 public class MongoConfiguration {
@@ -24,5 +28,11 @@ public class MongoConfiguration {
         properties.setUri(secret.getUri());
         return new PropertiesMongoConnectionDetails(properties);
 
+    }
+
+    @Bean
+    public MongoTemplate mongoTemplate(MongoDatabaseFactory databaseFactory, MappingMongoConverter converter) {
+        converter.setTypeMapper(new DefaultMongoTypeMapper(null));
+        return new MongoTemplate(databaseFactory, converter);
     }
 }
