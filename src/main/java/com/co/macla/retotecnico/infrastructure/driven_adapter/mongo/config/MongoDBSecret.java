@@ -1,2 +1,11 @@
-package com.co.macla.retotecnico.infrastructure.driven_adapter.mongo.config;public class MongoDBSecretr {
+package com.co.macla.retotecnico.infrastructure.driven_adapter.mongo.config;
+
+import lombok.Builder;
+import lombok.Getter;
+
+@Builder
+@Getter
+public class MongoDBSecret {
+
+    private final String uri;
 }

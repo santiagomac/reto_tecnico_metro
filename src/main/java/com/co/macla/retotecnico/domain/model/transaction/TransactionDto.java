@@ -1,4 +1,4 @@
-package com.co.macla.retotecnico.infrastructure.driven_adapter.mongo;
+package com.co.macla.retotecnico.domain.model.transaction;
 
 import lombok.*;
 
@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
-public class TransactionEntity {
+public class TransactionDto {
 
     private String transactionId;
     private LocalDateTime timestamp;
