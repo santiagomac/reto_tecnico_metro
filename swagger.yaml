@@ -1,0 +1,132 @@
+openapi: 3.0.3
+info:
+  title: Reto técnico Metro
+  description: |-
+    This is a contract to send requests to the server.
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: http://localhost:8080/api/v1
+tags:
+  - name: transaction
+    description: transaction from a device
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+paths:
+  /transaction:
+    post:
+      tags:
+        - transaction
+      summary: Create a new transaction
+      description: This request is a request to create new transaction with the next body.
+      operationId: createTransaction
+      requestBody:
+        description: Update an existent pet in the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '500':
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - petstore_auth:
+            - write:pets
+            - read:pets
+components:
+  schemas:
+    Transaction:
+      required:
+        - transactionId
+        - timestamp
+        - deviceNumber
+        - userId
+        - geoPosition
+        - amount
+      type: object
+      properties:
+        transactionId:
+          type: string
+          example: "123123123"
+        timestamp:
+          type: string
+          example: "2023-07-26T10:00:00Z"
+        deviceNumber:
+          type: number
+          example: 120
+        userId:
+          type: string
+          example: "323323323"
+        geoPosition:
+          type: string
+          example: "40.741 -73.989"
+        amount:
+          type: number
+          example: 12000.0
+      xml:
+        name: transaction
+    ApiResponse:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        timestamp:
+          type: string
+        deviceNumber:
+          type: number
+        userId:
+          type: string
+        geoPosition:
+          type: string
+        amount:
+          type: number
+      xml:
+        name: '##default'
+    ErrorResponse: 
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Failed to save transaction the database is down"
+  requestBodies:
+    Pet:
+      description: Pet object that needs to be added to the store
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Transaction'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Transaction'
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://petstore3.swagger.io/oauth/authorize
+          scopes:
+            write:pets: modify pets in your account
+            read:pets: read your pets
