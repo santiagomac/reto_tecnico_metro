@@ -23,6 +23,7 @@ Si se quiere hacer por medio de terminal seguir los siguientes comando, se debe 
 
 El siguiente comando crea los contenedores de mongodb, kafka y kafka-ui un gestor de clusters de kafka.
 - ```bash
+  cd docker
   docker-compose up -d
   ```
 
