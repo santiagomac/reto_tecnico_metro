@@ -5,4 +5,15 @@ spring:
     name: "RetoTecnico"
   data:
     mongo:
-      uri: "mongodb://root:example@localhost:27017/test"
+      uri: "mongodb://root:example@localhost:27017/test?authSource=admin"
+  kafka:
+    bootstrap-servers: kafka:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        allow:
+          auto:
+            create:
+              topics: true
+      client-id: transaction-producer
