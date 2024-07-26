@@ -1,0 +1,8 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: "RetoTecnico"
+  data:
+    mongo:
+      uri: "mongodb://root:example@localhost:27017/test"
